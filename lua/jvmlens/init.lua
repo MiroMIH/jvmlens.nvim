@@ -10,8 +10,11 @@ function M.setup(user_opts)
   config.setup(user_opts)
 
   local workspace = require("jvmlens.ui.workspace")
+  local endpoints_panel = require("jvmlens.ui.endpoints_panel")
 
-  vim.keymap.set("n", config.options.keymaps.toggle_view, workspace.toggle, {
+  vim.keymap.set("n", config.options.keymaps.toggle_view, function()
+    workspace.toggle(endpoints_panel.render)
+  end, {
     desc = "JVMLens: toggle debugger view",
   })
 end
